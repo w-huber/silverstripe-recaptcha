@@ -116,6 +116,8 @@ class RecaptchaField extends FormField
         $recaptchaJsUrl = self::config()->get('recaptcha_js_url');
         // js (main logic)
         $jsURL = sprintf($recaptchaJsUrl, $publicKey);
+        // add language
+        $jsURL .= "?hl=".i18n::get_lang_from_locale(i18n::get_locale());
         if (!empty($previousError)) {
             $jsURL .= "&error={$previousError}";
         }
